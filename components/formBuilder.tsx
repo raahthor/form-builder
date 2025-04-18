@@ -9,51 +9,58 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
-export default function FormBuilder() {
+type FormItem = {
+  title: string;
+  placeholder: string;
+};
+type ThemeItem = { title: string };
+type FormBuilderProps = {
+  formItems: FormItem[];
+  setFormItems: React.Dispatch<React.SetStateAction<FormItem[]>>;
+  font: ThemeItem;
+  color: ThemeItem;
+};
+
+export default function FormBuilder({
+  setFormItems,
+  formItems,
+  font,
+  color,
+}: FormBuilderProps) {
+  function removeField(ind: number) {
+    setFormItems((prev) => prev.filter((_, index) => index !== ind));
+  }
   return (
     <>
-      <Card className="w-[350px]">
+      <Card className="w-[350px] md:w-[450px] lg:w-[650px]">
         <CardHeader>
-          <CardTitle>Create project</CardTitle>
-          <CardDescription>
-            Deploy your new project in one-click.
-          </CardDescription>
+          <CardTitle>Form</CardTitle>
+          <CardDescription>Add fields from the sidebar</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          {formItems.length > 0 && (
             <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Name of your project" />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="framework">Framework</Label>
-                <Select>
-                  <SelectTrigger id="framework">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="next">Next.js</SelectItem>
-                    <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                    <SelectItem value="astro">Astro</SelectItem>
-                    <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+              {formItems.map((item: FormItem, ind: number) => (
+                <div key={ind} className="flex flex-col space-y-1.5">
+                  <Label className="flex justify-between">
+                    {item.title}
+                    <Button
+                      onClick={() => removeField(ind)}
+                      className="text-[12px] size-1.5 rounded-sm"
+                    >
+                      x
+                    </Button>
+                  </Label>
+                  <Input id="name" placeholder={item.placeholder} />
+                </div>
+              ))}
             </div>
-          </form>
+          )}
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button variant="outline">Cancel</Button>
-          <Button>Deploy</Button>
+          {formItems.length > 0 && <Button variant={"outline"}>Preview</Button>}
+          {formItems.length > 0 && <Button>Submit</Button>}
         </CardFooter>
       </Card>
     </>

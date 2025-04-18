@@ -1,4 +1,3 @@
-"use client";
 import {
   Sidebar,
   SidebarContent,
@@ -7,61 +6,93 @@ import {
   SidebarGroupLabel,
 } from "@/components/ui/sidebar";
 
-const formFields = [
-  {
-    title: "Full Name",
-  },
-  {
-    title: "E-mail",
-  },
-  {
-    title: "Address",
-  },
-  {
-    title: "Phone",
-  },
+type ThemeItems = {
+  title: string;
+};
+type AddFields = {
+  title: string;
+  placeholder: string;
+};
+const formFields: AddFields[] = [
+  { title: "Full Name", placeholder: "Enter your name" },
+  { title: "E-mail", placeholder: "Enter your E-mail" },
+  { title: "Address", placeholder: "Enter your address" },
+  { title: "Phone", placeholder: "Enter your phone number" },
 ];
-
-export function FormItems() {
+const fonts: ThemeItems[] = [
+  { title: "Sans-Sarif" },
+  { title: "monospace" },
+  { title: "roboto" },
+];
+const colors: ThemeItems[] = [
+  { title: "green" },
+  { title: "blue" },
+  { title: "amber" },
+];
+type FormItemsProps = {
+  setFormItems: React.Dispatch<React.SetStateAction<AddFields[]>>;
+  setFont: React.Dispatch<React.SetStateAction<ThemeItems>>;
+  setColor: React.Dispatch<React.SetStateAction<ThemeItems>>;
+};
+export function FormItems({ setFormItems, setFont, setColor }: FormItemsProps) {
   return (
     <Sidebar>
       <SidebarContent className="pt-4">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-xl border-b-2 border-black">
+          <SidebarGroupLabel className="pb-1 text-2xl border-b-2 border-l-2 border-black">
             Add Fields
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <ul className=" m-4">
               {formFields.map((item, ind) => (
-                <li
-                  key={ind}
-                  className=" text-xl hover:cursor-pointer hover:opacity-80 py-2"
-                  onClick={() => alert("hello")}
-                >
-                  {item.title}
+                <li key={ind}>
+                  <button
+                    className=" text-lg hover:opacity-80 py-2"
+                    onClick={() =>
+                      setFormItems((prev) => [
+                        ...prev,
+                        {
+                          title: item.title,
+                          placeholder: item.placeholder,
+                        },
+                      ])
+                    }
+                  >
+                    {item.title}
+                  </button>
                 </li>
               ))}
             </ul>
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-xl border-b-2 border-black">
+          <SidebarGroupLabel className="pb-1 text-2xl border-b-2 border-l-2 border-black mb-1">
             Theming
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <ul className=" m-4">
-              <li
-                className=" text-xl hover:cursor-pointer my-1"
-                onClick={() => alert("hello")}
-              >
-                Full Name
-              </li>
-              <li
-                className=" text-xl hover:cursor-pointer my-1"
-                onClick={() => alert("hello")}
-              >
-                E-mail
-              </li>
+            <h3 className="ml-2 mt-2 text-xl font-semibold">Fonts</h3>
+            <ul className=" mx-4">
+              {fonts.map((item, ind) => (
+                <li
+                  key={ind}
+                  className=" text-lg hover:cursor-pointer hover:opacity-80 py-2"
+                  onClick={() => setFont({ title: item.title })}
+                >
+                  {item.title}
+                </li>
+              ))}
+            </ul>
+            <h3 className="ml-2 mt-2 text-xl font-semibold">Colors</h3>
+            <ul className=" mx-4">
+              {fonts.map((item, ind) => (
+                <li
+                  key={ind}
+                  className=" text-lg hover:cursor-pointer hover:opacity-80 py-2"
+                  onClick={() => setColor({ title: item.title })}
+                >
+                  {item.title}
+                </li>
+              ))}
             </ul>
           </SidebarGroupContent>
         </SidebarGroup>
