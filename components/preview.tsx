@@ -33,13 +33,13 @@ export default function Preview({
 }: FormBuilderProps) {
   return (
     <div
-      className={`fixed z-20 w-full h-full flex justify-center items-center bg-[url('/Sprinkle.svg')] bg-cover bg-no-repeat ${isOpen}`}
+      className={`fixed z-20 inset-0 w-full h-full flex justify-center items-center bg-[url('/Sprinkle.svg')] bg-cover bg-no-repeat ${isOpen}`}
     >
-      <Button onClick={() => setIsOpen("hidden")} className=" absolute top-5">
+      <Button onClick={() => setIsOpen("hidden")} className=" fixed right-6 top-4">
         Exit Preview
       </Button>
       <Card
-        className={`w-[320px] md:w-[450px] lg:w-[650px] ${color.class} ${font.class}`}
+        className={`w-[320px] md:w-[450px] lg:w-[650px] max-h-[84vh] overflow-y-auto ${color.class} ${font.class}`}
       >
         <CardHeader>
           <CardTitle>Form</CardTitle>

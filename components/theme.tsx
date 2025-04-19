@@ -24,24 +24,24 @@ type FormItemsProps = {
 export default function Theme({ setFont, setColor }: FormItemsProps) {
   return (
     <>
-      <h3 className="ml-2 mt-2 text-xl font-semibold">Font Settings</h3>
+      <h3 className="ml-2 mt-2 text-lg font-semibold">Font Settings</h3>
       <ul className=" mx-4">
         {fonts.map((item, ind) => (
           <li
             key={ind}
-            className={` text-lg hover:cursor-pointer hover:opacity-80 px-3 my-2 border-2 rounded-lg bg-gray-200 ${item.class}`}
+            className={` text-base hover:cursor-pointer hover:opacity-80 px-3 my-2 border-2 rounded-lg bg-gray-200 ${item.class}`}
             onClick={() => setFont({ title: item.title, class: item.class })}
           >
             {item.title}
           </li>
         ))}
       </ul>
-      <h3 className="ml-2 mt-2 text-xl font-semibold">Color Settings</h3>
+      <h3 className="ml-2 mt-2 text-lg font-semibold">Color Settings</h3>
       <ul className=" mx-4">
         {colors.map((item, ind) => (
           <li
             key={ind}
-            className={` text-lg hover:cursor-pointer hover:opacity-80 px-3 my-2 border-2 rounded-lg ${item.class}`}
+            className={` text-base hover:cursor-pointer hover:opacity-80 px-3 my-2 border-2 rounded-lg ${item.class}`}
             onClick={() => setColor({ title: item.title, class: item.class })}
           >
             {item.title}

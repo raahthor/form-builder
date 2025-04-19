@@ -19,7 +19,7 @@ export default function Field({ setFormItems }: FormItemsProps) {
       {formFields.map((item, ind) => (
         <li
           key={ind}
-          className=" text-lg hover:cursor-pointer hover:opacity-80 px-3 my-2 border-2 rounded-lg bg-gray-200"
+          className=" text-base hover:cursor-pointer hover:opacity-80 px-3 my-2 border-2 rounded-lg bg-gray-200"
           onClick={() =>
             setFormItems((prev) => [
               ...prev,

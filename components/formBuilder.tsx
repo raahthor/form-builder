@@ -38,7 +38,7 @@ export default function FormBuilder({
   return (
     <>
       <Card
-        className={`w-[320px] md:w-[450px] lg:w-[650px] ${color.class} ${font.class}`}
+        className={`w-[320px] md:w-[450px] lg:w-[650px] ${color.class} ${font.class} max-h-[85vh] overflow-y-auto`}
       >
         <CardHeader>
           <CardTitle>Form</CardTitle>

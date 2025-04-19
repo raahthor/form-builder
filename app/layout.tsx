@@ -28,7 +28,7 @@ export default function RootLayout({
         className={` relative min-h-screen  ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div
-          className="pointer-events-none absolute inset-0 -z-10 bg-[url('/Sprinkle.svg')] bg-cover bg-no-repeat opacity-30"
+          className="pointer-events-none fixed inset-0 -z-10 bg-[url('/Sprinkle.svg')] bg-cover bg-no-repeat opacity-30"
           aria-hidden="true"
         />
         {children}

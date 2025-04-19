@@ -31,7 +31,7 @@ export default function Home() {
         isOpen={isOpen}
       />
       <div>
-        <SidebarProvider>
+        <SidebarProvider className=" sticky top-0">
           <EditPanel
             setFormItems={setFormItems}
             setFont={setFont}
@@ -40,8 +40,8 @@ export default function Home() {
           <SidebarTrigger />
         </SidebarProvider>
       </div>
-      <div className="flex flex-col items-center justify-center w-full relative">
-        <h2 className="absolute top-2 text-2xl font-bold">
+      <div className="flex flex-col items-center justify-center w-full">
+        <h2 className="fixed top-2 text-2xl font-bold">
           Form Builder Application
         </h2>
         <div>
