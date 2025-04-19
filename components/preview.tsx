@@ -15,61 +15,52 @@ type FormItem = {
   placeholder: string;
 };
 type ThemeItem = { title: string; class: string };
+
 type FormBuilderProps = {
   formItems: FormItem[];
-  setFormItems: React.Dispatch<React.SetStateAction<FormItem[]>>;
-  setIsOpen:React.Dispatch<React.SetStateAction<string>>;
+  setIsOpen: React.Dispatch<React.SetStateAction<string>>;
   font: ThemeItem;
   color: ThemeItem;
+  isOpen: string;
 };
 
-export default function FormBuilder({
-  setFormItems,
-  setIsOpen,
+export default function Preview({
   formItems,
+  setIsOpen,
   font,
   color,
+  isOpen,
 }: FormBuilderProps) {
-
-  function removeField(ind: number) {
-    setFormItems((prev) => prev.filter((_, index) => index !== ind));
-  }
-
   return (
-    <>
+    <div
+      className={`fixed z-20 w-full h-full flex justify-center items-center bg-blue-300 ${isOpen}`}
+    >
+      <Button onClick={() => setIsOpen("hidden")} className=" absolute top-5">
+        Exit Preview
+      </Button>
       <Card
         className={`w-[320px] md:w-[450px] lg:w-[650px] ${color.class} ${font.class}`}
       >
         <CardHeader>
           <CardTitle>Form</CardTitle>
-          <CardDescription>Add fields from the sidebar</CardDescription>
+          <CardDescription>Fill the details below</CardDescription>
         </CardHeader>
         <CardContent>
           {formItems.length > 0 && (
             <div className="grid w-full items-center gap-4">
               {formItems.map((item: FormItem, ind: number) => (
                 <div key={ind} className="flex flex-col space-y-1.5">
-                  <Label className="flex justify-between">
-                    {item.title}
-                    <Button
-                      variant={"outline"}
-                      onClick={() => removeField(ind)}
-                      className="text-[12px] w-1.5 h-5 rounded-sm"
-                    >
-                      x
-                    </Button>
-                  </Label>
+                  <Label className="flex justify-between">{item.title}</Label>
                   <Input id="name" placeholder={item.placeholder} />
                 </div>
               ))}
             </div>
           )}
         </CardContent>
-        <CardFooter className="flex justify-between">
-          {formItems.length > 0 && <Button onClick={()=>setIsOpen("")} variant={"outline"}>Preview</Button>}
+        <CardFooter className="flex justify-center">
           {formItems.length > 0 && <Button>Submit</Button>}
         </CardFooter>
       </Card>
-    </>
+    </div>
   );
 }

@@ -1,11 +1,13 @@
-"use client"
+"use client";
 import FormBuilder from "@/components/formBuilder";
 import { FormItems } from "@/components/formItems";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useState } from "react";
+import Preview from "@/components/preview";
 
 type ThemeItems = {
   title: string;
+  class: string;
 };
 type AddFields = {
   title: string;
@@ -14,10 +16,21 @@ type AddFields = {
 
 export default function Home() {
   const [formItems, setFormItems] = useState<AddFields[]>([]);
-  const [font, setFont] = useState<ThemeItems>({ title: "" });
-  const [color, setColor] = useState<ThemeItems>({ title: "" });
+  const [font, setFont] = useState<ThemeItems>({ title: "font", class: "" });
+  const [color, setColor] = useState<ThemeItems>({
+    title: "White",
+    class: "",
+  });
+  const [isOpen, setIsOpen] = useState<string>("hidden");
   return (
     <div className="flex">
+      <Preview
+        setIsOpen={setIsOpen}
+        formItems={formItems}
+        font={font}
+        color={color}
+        isOpen={isOpen}
+      />
       <div>
         <SidebarProvider>
           <FormItems
@@ -34,6 +47,7 @@ export default function Home() {
         </h2>
         <div>
           <FormBuilder
+            setIsOpen={setIsOpen}
             setFormItems={setFormItems}
             formItems={formItems}
             font={font}

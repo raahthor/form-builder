@@ -8,6 +8,7 @@ import {
 
 type ThemeItems = {
   title: string;
+  class: string;
 };
 type AddFields = {
   title: string;
@@ -20,14 +21,18 @@ const formFields: AddFields[] = [
   { title: "Phone", placeholder: "Enter your phone number" },
 ];
 const fonts: ThemeItems[] = [
-  { title: "Sans-Sarif" },
-  { title: "monospace" },
-  { title: "roboto" },
+  { title: "Default", class: "" },
+  { title: "Sans-serif", class: "font-sans" },
+  { title: "Serif", class: "font-serif" },
+  { title: "Monospace", class: "font-mono" },
 ];
 const colors: ThemeItems[] = [
-  { title: "green" },
-  { title: "blue" },
-  { title: "amber" },
+  { title: "Default", class: "bg-white" },
+  { title: "Red", class: "bg-red-300" },
+  { title: "Green", class: "bg-green-400" },
+  { title: "Blue", class: "bg-blue-300" },
+  { title: "Yellow", class: "bg-yellow-400" },
+  { title: "Indigo", class: "bg-indigo-300" },
 ];
 type FormItemsProps = {
   setFormItems: React.Dispatch<React.SetStateAction<AddFields[]>>;
@@ -45,21 +50,20 @@ export function FormItems({ setFormItems, setFont, setColor }: FormItemsProps) {
           <SidebarGroupContent>
             <ul className=" m-4">
               {formFields.map((item, ind) => (
-                <li key={ind}>
-                  <button
-                    className=" text-lg hover:opacity-80 py-2"
-                    onClick={() =>
-                      setFormItems((prev) => [
-                        ...prev,
-                        {
-                          title: item.title,
-                          placeholder: item.placeholder,
-                        },
-                      ])
-                    }
-                  >
-                    {item.title}
-                  </button>
+                <li
+                  key={ind}
+                  className=" text-lg hover:cursor-pointer hover:opacity-80 py-2"
+                  onClick={() =>
+                    setFormItems((prev) => [
+                      ...prev,
+                      {
+                        title: item.title,
+                        placeholder: item.placeholder,
+                      },
+                    ])
+                  }
+                >
+                  {item.title}
                 </li>
               ))}
             </ul>
@@ -76,7 +80,9 @@ export function FormItems({ setFormItems, setFont, setColor }: FormItemsProps) {
                 <li
                   key={ind}
                   className=" text-lg hover:cursor-pointer hover:opacity-80 py-2"
-                  onClick={() => setFont({ title: item.title })}
+                  onClick={() =>
+                    setFont({ title: item.title, class: item.class })
+                  }
                 >
                   {item.title}
                 </li>
@@ -84,11 +90,13 @@ export function FormItems({ setFormItems, setFont, setColor }: FormItemsProps) {
             </ul>
             <h3 className="ml-2 mt-2 text-xl font-semibold">Colors</h3>
             <ul className=" mx-4">
-              {fonts.map((item, ind) => (
+              {colors.map((item, ind) => (
                 <li
                   key={ind}
                   className=" text-lg hover:cursor-pointer hover:opacity-80 py-2"
-                  onClick={() => setColor({ title: item.title })}
+                  onClick={() =>
+                    setColor({ title: item.title, class: item.class })
+                  }
                 >
                   {item.title}
                 </li>
