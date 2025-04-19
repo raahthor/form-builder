@@ -6,7 +6,7 @@ type AddFields = {
 };
 const formFields: AddFields[] = [
   { title: "Full Name", placeholder: "Enter your name" },
-  { title: "E-mail", placeholder: "Enter your E-mail" },
+  { title: "Email", placeholder: "Enter your E-mail" },
   { title: "Address", placeholder: "Enter your address" },
   { title: "Phone", placeholder: "Enter your phone number" },
 ];
@@ -19,7 +19,7 @@ export default function Field({ setFormItems }: FormItemsProps) {
       {formFields.map((item, ind) => (
         <li
           key={ind}
-          className=" text-lg hover:cursor-pointer hover:opacity-80 py-2"
+          className=" text-lg hover:cursor-pointer hover:opacity-80 px-3 my-2 border-2 rounded-lg bg-gray-200"
           onClick={() =>
             setFormItems((prev) => [
               ...prev,

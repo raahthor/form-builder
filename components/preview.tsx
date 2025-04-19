@@ -33,7 +33,7 @@ export default function Preview({
 }: FormBuilderProps) {
   return (
     <div
-      className={`fixed z-20 w-full h-full flex justify-center items-center bg-blue-300 ${isOpen}`}
+      className={`fixed z-20 w-full h-full flex justify-center items-center bg-[url('/Sprinkle.svg')] bg-cover bg-no-repeat ${isOpen}`}
     >
       <Button onClick={() => setIsOpen("hidden")} className=" absolute top-5">
         Exit Preview

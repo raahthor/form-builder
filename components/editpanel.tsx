@@ -28,7 +28,7 @@ export function EditPanel({ setFormItems, setFont, setColor }: FormItemsProps) {
       <SidebarContent className="pt-4">
         <SidebarGroup>
           <SidebarGroupLabel className="pb-1 text-2xl border-b-2 border-l-2 border-black">
-            Add Fields
+            Form Fields
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <Field setFormItems={setFormItems} />

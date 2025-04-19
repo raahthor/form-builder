@@ -10,10 +10,10 @@ const fonts: ThemeItems[] = [
 ];
 const colors: ThemeItems[] = [
   { title: "Default", class: "bg-white" },
-  { title: "Red", class: "bg-red-300" },
-  { title: "Green", class: "bg-green-400" },
+  { title: "Red", class: "bg-red-200" },
+  { title: "Green", class: "bg-green-200" },
   { title: "Blue", class: "bg-blue-300" },
-  { title: "Yellow", class: "bg-yellow-400" },
+  { title: "Yellow", class: "bg-yellow-300" },
   { title: "Indigo", class: "bg-indigo-300" },
 ];
 type FormItemsProps = {
@@ -24,24 +24,24 @@ type FormItemsProps = {
 export default function Theme({ setFont, setColor }: FormItemsProps) {
   return (
     <>
-      <h3 className="ml-2 mt-2 text-xl font-semibold">Fonts</h3>
+      <h3 className="ml-2 mt-2 text-xl font-semibold">Font Settings</h3>
       <ul className=" mx-4">
         {fonts.map((item, ind) => (
           <li
             key={ind}
-            className=" text-lg hover:cursor-pointer hover:opacity-80 py-2"
+            className={` text-lg hover:cursor-pointer hover:opacity-80 px-3 my-2 border-2 rounded-lg bg-gray-200 ${item.class}`}
             onClick={() => setFont({ title: item.title, class: item.class })}
           >
             {item.title}
           </li>
         ))}
       </ul>
-      <h3 className="ml-2 mt-2 text-xl font-semibold">Colors</h3>
+      <h3 className="ml-2 mt-2 text-xl font-semibold">Color Settings</h3>
       <ul className=" mx-4">
         {colors.map((item, ind) => (
           <li
             key={ind}
-            className=" text-lg hover:cursor-pointer hover:opacity-80 py-2"
+            className={` text-lg hover:cursor-pointer hover:opacity-80 px-3 my-2 border-2 rounded-lg ${item.class}`}
             onClick={() => setColor({ title: item.title, class: item.class })}
           >
             {item.title}
