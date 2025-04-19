@@ -15,7 +15,7 @@ type FormItemsProps = {
 export default function CustomField({ setFormItems }: FormItemsProps) {
   const [input, setInput] = useState<string>("");
 
-  function handleChange(e: any) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
   }
   function handleClick() {
